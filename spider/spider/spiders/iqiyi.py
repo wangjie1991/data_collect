@@ -24,6 +24,7 @@ class IqiyiSpider(CrawlSpider):
 
     def parse_item(self, response):
         loader = TextLoader(item=TextItem(), response=response)
+        item = SpiderItem()
 
         loader.add_value('path', path)
         loader.add_xpath('text', '//h1/text()')
