@@ -13,5 +13,7 @@ class SpiderItem(scrapy.Item):
     # name = scrapy.Field()
     name = scrapy.Field()
     url = scrapy.Field()
+    flvcd = scrapy.Field()
+    time = scrapy.Field()
 
 
