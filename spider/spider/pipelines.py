@@ -7,12 +7,22 @@
 
 
 class SpiderPipeline(object):
+    idx = 0
+
     def process_item(self, item, spider):
-        path = '../data/%s.txt' %s item['name']
-        content = 'name=%s\nurl=%s\n' % (item['name'], item['url'])
+        self.idx += 1
+        path = '../data/%s.txt' % str(self.idx)
+        content = 'name=%s\nurl=%s\nflvcd=%s\n' % \
+                  (item['name'], item['url'], item['flvcd'])
 
         with open(path, 'w') as fout:
-            fout.write(content)
+            fout.write(content.encode('utf8'))
+
+        with open('../data/flvcd.txt', 'a') as fout:
+            urls = item['flvcd'].split('|')
+            for url in urls:
+                fout.write(url + '\n')
+
         return item
 
 
