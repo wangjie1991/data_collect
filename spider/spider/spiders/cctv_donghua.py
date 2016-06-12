@@ -50,6 +50,8 @@ class CctvDonghuaSpider(CrawlSpider):
             return None
         flvcd = Flvcd(response.url)
         flvcd_url = flvcd.parse()
+        if not flvcd_url:
+            return None
         item['name'] = title[:title.find('_')]
         item['url'] = response.url
         item['flvcd'] = flvcd_url
